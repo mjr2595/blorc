@@ -1,0 +1,121 @@
+:root {
+  --font-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --max-width: 65ch;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+
+  /* Light theme */
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #666666;
+  --border: #e5e5e5;
+  --link: #0066cc;
+  --link-hover: #003366;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a1a;
+    --text: #ffffff;
+    --text-muted: #999999;
+    --border: #333333;
+    --link: #66b3ff;
+    --link-hover: #b3d9ff;
+  }
+}
+
+/* Base styles */
+html {
+  font-family: var(--font-system);
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  margin: 0;
+  padding: var(--spacing-md);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* Article list */
+.article-list {
+  list-style: none;
+  padding: 0;
+}
+
+.article-item {
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border);
+}
+
+.article-title {
+  font-size: 1.25rem;
+  margin: 0 0 var(--spacing-xs);
+}
+
+.article-meta {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.article-summary {
+  margin-top: var(--spacing-sm);
+}
+
+/* Writers grid */
+.writers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  padding: 0;
+  list-style: none;
+}
+
+.writer-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--spacing-md);
+}
+
+.writer-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.writer-social {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.writer-social a {
+  color: var(--text-muted);
+}

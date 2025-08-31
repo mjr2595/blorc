@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Michael Raymond",
+    "profilePic": "/images/writers/mray.png",
+    "site": "https://michaelraymond.dev/",
+    "rss": "https://michaelraymond.dev/rss.xml",
+    "social": {
+      "x": "https://x.com/jane",
+      "github": "https://github.com/jane",
+      "linkedin": "https://www.linkedin.com/in/mjraymond"
+    }
+  }
+]

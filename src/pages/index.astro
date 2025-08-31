@@ -1,16 +1,72 @@
 ---
+import { getArticles } from "../lib/aggregate";
+import "../styles/global.css";
 
+const articles = await getArticles();
 ---
 
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latest (25) — RSS Reader</title>
+    <meta
+      name="description"
+      content="Latest articles from our curated list of writers"
+    />
+    <link rel="canonical" href="/" />
+  </head>
+  <body>
+    <header>
+      <h1>Latest from Our Writers</h1>
+      <nav>
+        <a href="/writers">Writers Directory</a>
+      </nav>
+    </header>
+
+    <main>
+      {
+        articles.length > 0 ? (
+          <ol class="article-list">
+            {articles.map((article) => (
+              <li class="article-item">
+                <h2 class="article-title">
+                  <a
+                    href={article.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {article.title}
+                  </a>
+                </h2>
+                <div class="article-meta">
+                  By{" "}
+                  <a
+                    href={article.writerSite}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {article.writerName}
+                  </a>{" "}
+                  • {new Date(article.published).toLocaleDateString()}
+                </div>
+                {article.summary && (
+                  <p class="article-summary">
+                    {article.summary.replace(/<[^>]*>/g, "").slice(0, 200)}...
+                  </p>
+                )}
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p>No articles found. Please try again later.</p>
+        )
+      }
+    </main>
+
+    <footer>
+      <p>© RSS Reader • <a href="/writers">Writers</a></p>
+    </footer>
+  </body>
 </html>
