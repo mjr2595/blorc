@@ -39,5 +39,16 @@
       "github": "https://github.com/pranshu-raj-211",
       "linkedin": "https://www.linkedin.com/in/pranshuraj2004/"
     }
+  },
+  {
+    "name": "Björn 'Idrinth' Büttner",
+    "profilePic": "/images/profile-pics/idrinth.png",
+    "site": "https://medium.com/@idrinth/",
+    "rss": "https://medium.com/feed/@idrinth",
+    "social": {
+      "x": "https://x.com/idrinth",
+      "github": "https://github.com/idrinth",
+      "linkedin": "https://www.linkedin.com/in/bjoern-idrinth-buettner"
+    }
   }
 ]
