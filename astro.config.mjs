@@ -1,12 +1,12 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import node from "@astrojs/node";
+import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://mjr2595.github.io",
+  site: "https://blorc.netlify.app",
   output: "server",
-  adapter: node({
-    mode: "standalone",
+  adapter: netlify({
+    edgeMiddleware: true,
   }),
 });
