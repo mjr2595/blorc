@@ -2,6 +2,7 @@
   "name": "blorc",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@10",
   "scripts": {
     "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 astro dev",
     "build": "astro build",
