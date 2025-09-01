@@ -150,3 +150,56 @@ a:hover {
 .writer-social a {
   color: var(--text-muted);
 }
+
+/* Update info and status messages */
+.update-info {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background-color: var(--card-background);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.update-info p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.error-message {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: 4px;
+  color: #c33;
+}
+
+.error-message p {
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.error-message p:last-child {
+  margin-bottom: 0;
+}
+
+.no-articles {
+  text-align: center;
+  padding: var(--spacing-lg);
+  color: var(--text-muted);
+}
+
+.no-articles p {
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.no-articles p:last-child {
+  margin-bottom: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .error-message {
+    background-color: #322;
+    border-color: #544;
+    color: #faa;
+  }
+}

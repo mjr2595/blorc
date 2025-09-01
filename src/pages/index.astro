@@ -1,8 +1,29 @@
 ---
 import { getArticles } from "../lib/aggregate";
+import type { Article } from "../lib/aggregate";
 import "../styles/global.css";
 
-const articles = await getArticles();
+export const prerender = false;
+
+// Set cache control headers to ensure fresh data on each request
+if (Astro.response) {
+  Astro.response.headers.set(
+    "Cache-Control",
+    "no-cache, no-store, must-revalidate"
+  );
+  Astro.response.headers.set("Pragma", "no-cache");
+  Astro.response.headers.set("Expires", "0");
+}
+
+let articles: Article[] = [];
+let error: Error | null = null;
+
+try {
+  articles = await getArticles();
+} catch (e) {
+  console.error("Error fetching articles:", e);
+  error = e instanceof Error ? e : new Error(String(e));
+}
 ---
 
 <!doctype html>
@@ -31,41 +52,60 @@ const articles = await getArticles();
 
     <main>
       {
-        articles.length > 0 ? (
-          <ol class="article-list">
-            {articles.map((article) => (
-              <li class="article-item">
-                <h2 class="article-title">
-                  <a
-                    href={article.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {article.title}
-                  </a>
-                </h2>
-                <div class="article-meta">
-                  By{" "}
-                  <a
-                    href={article.writerSite}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {article.writerName}
-                  </a>{" "}
-                  — {article.channelTitle} •{" "}
-                  {new Date(article.published).toLocaleDateString()}
-                </div>
-                {article.summary && (
-                  <p class="article-summary">
-                    {article.summary.replace(/<[^>]*>/g, "").slice(0, 200)}...
-                  </p>
-                )}
-              </li>
-            ))}
-          </ol>
+        error ? (
+          <div class="error-message">
+            <p>Error loading articles. Please try refreshing the page.</p>
+            <p>
+              <small>Last updated: {new Date().toLocaleString()}</small>
+            </p>
+          </div>
+        ) : articles.length > 0 ? (
+          <>
+            <div class="update-info">
+              <p>
+                <small>Last updated: {new Date().toLocaleString()}</small>
+              </p>
+            </div>
+            <ol class="article-list">
+              {articles.map((article) => (
+                <li class="article-item">
+                  <h2 class="article-title">
+                    <a
+                      href={article.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {article.title}
+                    </a>
+                  </h2>
+                  <div class="article-meta">
+                    By{" "}
+                    <a
+                      href={article.writerSite}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {article.writerName}
+                    </a>{" "}
+                    — {article.channelTitle} •{" "}
+                    {new Date(article.published).toLocaleDateString()}
+                  </div>
+                  {article.summary && (
+                    <p class="article-summary">
+                      {article.summary.replace(/<[^>]*>/g, "").slice(0, 200)}...
+                    </p>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </>
         ) : (
-          <p>No articles found. Please try again later.</p>
+          <div class="no-articles">
+            <p>No articles found. Please try again later.</p>
+            <p>
+              <small>Last checked: {new Date().toLocaleString()}</small>
+            </p>
+          </div>
         )
       }
     </main>
