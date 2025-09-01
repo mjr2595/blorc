@@ -10,18 +10,22 @@ const articles = await getArticles();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Latest (25) — RSS Reader</title>
+    <title>Blorc - Latest</title>
     <meta
       name="description"
       content="Latest articles from our curated list of writers"
     />
+    <link rel="icon" href="https://fav.farm/🔥" />
     <link rel="canonical" href="/" />
   </head>
   <body>
     <header>
-      <h1>Latest from Our Writers</h1>
+      <div class="header-main">
+        <img src="/images/torc-logo.png" alt="Torc Logo" class="logo" />
+        <h1>Latest Blog Posts from Torc Community Members</h1>
+      </div>
       <nav>
-        <a href="/writers">Writers Directory</a>
+        <a href="/bloggers">Blogger Directory</a>
       </nav>
     </header>
 
@@ -49,7 +53,8 @@ const articles = await getArticles();
                   >
                     {article.writerName}
                   </a>{" "}
-                  • {new Date(article.published).toLocaleDateString()}
+                  — {article.channelTitle} •{" "}
+                  {new Date(article.published).toLocaleDateString()}
                 </div>
                 {article.summary && (
                   <p class="article-summary">
@@ -66,7 +71,13 @@ const articles = await getArticles();
     </main>
 
     <footer>
-      <p>© RSS Reader • <a href="/writers">Writers</a></p>
+      <p>
+        <a
+          href="https://torc.community/"
+          target="_blank"
+          rel="noopener noreferrer">Torc Community Page</a
+        >
+      </p>
     </footer>
   </body>
 </html>

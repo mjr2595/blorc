@@ -1,9 +1,9 @@
 {
-  "name": "",
+  "name": "blorc",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

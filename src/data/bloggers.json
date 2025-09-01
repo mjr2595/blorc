@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Michael Raymond",
+    "profilePic": "/images/profile-pics/mray.png",
+    "site": "https://michaelraymond.dev/",
+    "rss": "https://michaelraymond.dev/rss.xml",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/mjraymond",
+      "github": "https://github.com/mjr2595",
+      "bluesky": "https://bsky.app/profile/mray.bsky.social"
+    }
+  },
+  {
+    "name": "Jordyn Wallace",
+    "profilePic": "/images/profile-pics/jordyn.jpeg",
+    "site": "https://ltto.ghost.io",
+    "rss": "https://ltto.ghost.io/rss/",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/jordyn-wallace/"
+    }
+  },
+  {
+    "name": "Nazanin Ashrafi",
+    "profilePic": "/images/profile-pics/nazanin.jpeg",
+    "site": "https://nazanin-ashrafi.hashnode.dev/",
+    "rss": "https://nazanin-ashrafi.hashnode.dev/rss.xml",
+    "social": {
+      "x": "https://twitter.com/nazanin_ashrafi",
+      "github": "https://github.com/NazaNEYn"
+    }
+  },
+  {
+    "name": "Pranshu Raj",
+    "profilePic": "/images/profile-pics/pranshu.png",
+    "site": "https://blog.pranshu-raj.me/",
+    "rss": "https://blog.pranshu-raj.me/rss.xml",
+    "social": {
+      "x": "https://x.com/seigino99707047",
+      "github": "https://github.com/pranshu-raj-211",
+      "linkedin": "https://www.linkedin.com/in/pranshuraj2004/"
+    }
+  }
+]

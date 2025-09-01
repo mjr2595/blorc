@@ -1,4 +1,4 @@
-import writers from "../data/writers.json";
+import bloggers from "../data/bloggers.json";
 
 interface Article {
   id: string;
@@ -9,6 +9,7 @@ interface Article {
   summary?: string;
   writerName: string;
   writerSite: string;
+  channelTitle?: string;
 }
 
 export async function getArticles(): Promise<Article[]> {
@@ -17,7 +18,7 @@ export async function getArticles(): Promise<Article[]> {
   const items: Article[] = [];
 
   await Promise.all(
-    writers.map(async (w) => {
+    bloggers.map(async (w) => {
       try {
         console.log(`Fetching RSS feed for ${w.name} from ${w.rss}`);
         const res = await fetch(w.rss, {
@@ -40,15 +41,16 @@ export async function getArticles(): Promise<Article[]> {
           `Received XML content for ${w.name}: ${xml.slice(0, 200)}...`
         );
         const feed = parser.parse(xml);
-        console.log(
-          `Parsed feed structure:`,
-          JSON.stringify(feed, null, 2).slice(0, 200)
-        );
+
         const entries = (
           feed?.rss?.channel?.item ||
           feed?.feed?.entry ||
           []
         ).slice(0, 20);
+
+        // Get channel title from either RSS or Atom format
+        const channelTitle =
+          feed?.rss?.channel?.title || feed?.feed?.title || w.name;
 
         for (const e of entries) {
           const link =
@@ -66,6 +68,7 @@ export async function getArticles(): Promise<Article[]> {
             summary: e["content:encoded"] || e.description || e.summary,
             writerName: w.name,
             writerSite: w.site,
+            channelTitle: channelTitle?.toString(),
           });
         }
       } catch (error) {

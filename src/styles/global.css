@@ -10,21 +10,23 @@
 
   /* Light theme */
   --bg: #ffffff;
-  --text: #1a1a1a;
+  --text: #000000;
   --text-muted: #666666;
   --border: #e5e5e5;
-  --link: #0066cc;
-  --link-hover: #003366;
+  --link: #4f45e5;
+  --link-hover: #0336cc;
+  --card-background: #f0f0f0;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1a1a1a;
+    --bg: #000000;
     --text: #ffffff;
     --text-muted: #999999;
     --border: #333333;
-    --link: #66b3ff;
-    --link-hover: #b3d9ff;
+    --link: #4f45e5;
+    --link-hover: #0336cc;
+    --card-background: #1d2025;
   }
 }
 
@@ -43,12 +45,40 @@ body {
   line-height: 1.6;
 }
 
+/* Header styles */
+header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.header-main {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}
+
+header nav {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
 /* Typography */
 h1,
 h2,
 h3 {
   line-height: 1.2;
-  margin-top: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
   margin-bottom: var(--spacing-md);
 }
 
@@ -98,6 +128,7 @@ a:hover {
 }
 
 .writer-card {
+  background-color: var(--card-background);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: var(--spacing-md);
