@@ -1,6 +1,7 @@
 ---
-import { getArticles } from "../lib/aggregate";
+import { decodeHTML } from "entities";
 import type { Article } from "../lib/aggregate";
+import { getArticles } from "../lib/aggregate";
 import "../styles/global.css";
 
 export const prerender = false;
@@ -75,7 +76,7 @@ try {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {article.title}
+                      {decodeHTML(article.title)}
                     </a>
                   </h2>
                   <div class="article-meta">
@@ -85,14 +86,17 @@ try {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {article.writerName}
+                      {decodeHTML(article.writerName)}
                     </a>{" "}
-                    — {article.channelTitle} •{" "}
+                    — {decodeHTML(article.channelTitle ?? "")} •{" "}
                     {new Date(article.published).toLocaleDateString()}
                   </div>
                   {article.summary && (
                     <p class="article-summary">
-                      {article.summary.replace(/<[^>]*>/g, "").slice(0, 200)}...
+                      {decodeHTML(
+                        article.summary.replace(/<[^>]*>/g, "")
+                      ).slice(0, 200)}
+                      ...
                     </p>
                   )}
                 </li>
