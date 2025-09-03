@@ -50,5 +50,17 @@
       "github": "https://github.com/idrinth",
       "linkedin": "https://www.linkedin.com/in/bjoern-idrinth-buettner"
     }
+  },
+  {
+    "name": "Jeff \"Bot Boy\" Jessie",
+    "profilePic": "/images/profile-pics/jeff-headshot.png",
+    "site": "https://dev.to/j3ffjessie/",
+    "rss": "https://dev.to/feed/j3ffjessie",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/jeff-jessie",
+      "github": "https://github.com/j3ffjessie",
+      "bluesky": "https://bsky.app/profile/j3ffjessie.bsky.social",
+      "x": "https://x.com/j3ffjessie"
+    }
   }
 ]
