@@ -62,5 +62,16 @@
       "bluesky": "https://bsky.app/profile/j3ffjessie.bsky.social",
       "x": "https://x.com/j3ffjessie"
     }
+  },
+  {
+    "name": "Linda Thompson",
+    "profilePic": "/images/profile-pics/linda.png",
+    "site": "https://www.lindakat.com/blog/",
+    "rss": "https://www.lindakat.com/rss.xml",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/lindakatcodes/",
+      "github": "https://github.com/lindakatcodes",
+      "bluesky": "https://bsky.app/profile/lindakat.com"
+    }
   }
 ]
