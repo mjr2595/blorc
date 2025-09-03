@@ -1,4 +1,9 @@
 import bloggers from "../data/bloggers.json";
+import { XMLParser } from "fast-xml-parser";
+
+const FETCH_TIMEOUT = 6000;
+const BATCH_SIZE = 4;
+const MAX_ARTICLES_PER_FEED = 10;
 
 export interface Article {
   id: string;
@@ -13,69 +18,90 @@ export interface Article {
 }
 
 export async function getArticles(): Promise<Article[]> {
-  const { XMLParser } = await import("fast-xml-parser");
-  const parser = new XMLParser({ ignoreAttributes: false });
+  const parser = new XMLParser({
+    ignoreAttributes: false,
+    parseAttributeValue: false,
+    trimValues: true,
+  });
+
   const items: Article[] = [];
 
-  await Promise.all(
-    bloggers.map(async (w) => {
-      try {
-        console.log(`Fetching RSS feed for ${w.name} from ${w.rss}`);
-        const res = await fetch(w.rss, {
-          headers: {
-            "user-agent": "Mozilla/5.0 (compatible; RSSAggregator/1.0)",
-            accept:
-              "application/rss+xml, application/xml, application/atom+xml, text/xml, */*",
-          },
-        });
+  const batches = [];
+  for (let i = 0; i < bloggers.length; i += BATCH_SIZE) {
+    batches.push(bloggers.slice(i, i + BATCH_SIZE));
+  }
 
-        if (!res.ok) {
-          console.error(
-            `Failed to fetch RSS feed for ${w.name}: ${res.status} ${res.statusText}`
-          );
-          return;
-        }
+  for (const batch of batches) {
+    await Promise.all(
+      batch.map(async (w) => {
+        try {
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
 
-        const xml = await res.text();
-        console.log(
-          `Received XML content for ${w.name}: ${xml.slice(0, 200)}...`
-        );
-        const feed = parser.parse(xml);
-
-        const entries = (
-          feed?.rss?.channel?.item ||
-          feed?.feed?.entry ||
-          []
-        ).slice(0, 20);
-
-        // Get channel title from either RSS or Atom format
-        const channelTitle =
-          feed?.rss?.channel?.title || feed?.feed?.title || w.name;
-
-        for (const e of entries) {
-          const link =
-            typeof e.link === "string" ? e.link : e.link?.["@_href"] || e.id;
-          const published =
-            e.pubDate || e.published || e.updated || new Date().toISOString();
-          const date = new Date(published);
-
-          items.push({
-            id: e.guid || link,
-            title: e.title?.toString() || "Untitled",
-            link,
-            published: date.toISOString(),
-            isoTime: date.getTime(),
-            summary: e["content:encoded"] || e.description || e.summary,
-            writerName: w.name,
-            writerSite: w.site,
-            channelTitle: channelTitle?.toString(),
+          const res = await fetch(w.rss, {
+            signal: controller.signal,
+            headers: {
+              "user-agent": "Mozilla/5.0 (compatible; RSSAggregator/1.0)",
+              accept:
+                "application/rss+xml, application/xml, application/atom+xml",
+            },
           });
+
+          clearTimeout(timeout);
+
+          if (!res.ok) {
+            console.warn(`RSS fetch failed for ${w.name}: ${res.status}`);
+            return;
+          }
+
+          const xml = await res.text();
+          const feed = parser.parse(xml);
+
+          // Handle single items not being arrays
+          let entries = feed?.rss?.channel?.item || feed?.feed?.entry || [];
+          if (!Array.isArray(entries)) {
+            entries = [entries];
+          }
+          entries = entries.slice(0, MAX_ARTICLES_PER_FEED);
+
+          const channelTitle =
+            feed?.rss?.channel?.title || feed?.feed?.title || w.name;
+
+          for (const e of entries) {
+            if (!e) continue; // Skip null/undefined entries
+
+            const link =
+              typeof e.link === "string" ? e.link : e.link?.["@_href"] || e.id;
+
+            if (!link) continue; // Skip entries without links
+
+            const published =
+              e.pubDate || e.published || e.updated || new Date().toISOString();
+            const date = new Date(published);
+
+            // Skip invalid dates
+            if (isNaN(date.getTime())) continue;
+
+            items.push({
+              id: e.guid || link,
+              title: e.title?.toString() || "Untitled",
+              link,
+              published: date.toISOString(),
+              isoTime: date.getTime(),
+              summary: e["content:encoded"] || e.description || e.summary || "",
+              writerName: w.name,
+              writerSite: w.site,
+              channelTitle: channelTitle?.toString() || w.name,
+            });
+          }
+        } catch (error) {
+          const errorMessage =
+            error instanceof Error ? error.message : String(error);
+          console.warn(`Error fetching ${w.name}:`, errorMessage);
         }
-      } catch (error) {
-        console.error(`Error fetching feed for ${w.name}:`, error);
-      }
-    })
-  );
+      })
+    );
+  }
 
   return items.sort((a, b) => b.isoTime - a.isoTime).slice(0, 25);
 }
