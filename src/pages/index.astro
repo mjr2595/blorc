@@ -57,14 +57,36 @@ try {
           <div class="error-message">
             <p>Error loading articles. Please try refreshing the page.</p>
             <p>
-              <small>Last updated: {new Date().toLocaleString()}</small>
+              <small>
+                Last updated:{" "}
+                {new Date().toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                  timeZoneName: "shortGeneric",
+                })}
+              </small>
             </p>
           </div>
         ) : articles.length > 0 ? (
           <>
             <div class="update-info">
               <p>
-                <small>Last updated: {new Date().toLocaleString()}</small>
+                <small>
+                  Last updated:{" "}
+                  {new Date().toLocaleDateString("en-GB", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                    hour: "numeric",
+                    minute: "numeric",
+                    hour12: true,
+                    timeZoneName: "shortGeneric",
+                  })}
+                </small>
               </p>
             </div>
             <ol class="article-list">
@@ -89,7 +111,11 @@ try {
                       {decodeHTML(article.writerName)}
                     </a>{" "}
                     — {decodeHTML(article.channelTitle ?? "")} •{" "}
-                    {new Date(article.published).toLocaleDateString()}
+                    {new Date(article.published).toLocaleDateString("en-GB", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
                   </div>
                   {article.summary && (
                     <p class="article-summary">
@@ -107,7 +133,18 @@ try {
           <div class="no-articles">
             <p>No articles found. Please try again later.</p>
             <p>
-              <small>Last checked: {new Date().toLocaleString()}</small>
+              <small>
+                Last checked:{" "}
+                {new Date().toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  hour12: true,
+                  timeZoneName: "short",
+                })}
+              </small>
             </p>
           </div>
         )

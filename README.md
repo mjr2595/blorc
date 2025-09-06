@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f9ddbc93-f8f4-407c-b411-644254ca103a/deploy-status)](https://app.netlify.com/projects/blorc/deploys)
 
-A list of the latest blog posts from members of the [Torc Community](https://torc.community/).
+A list of the latest blog posts from members of the [Torc Community](https://www.torc.dev/community/).
 
 ## Want your blog added?
 

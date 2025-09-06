@@ -13,8 +13,8 @@
   --text: #000000;
   --text-muted: #666666;
   --border: #e5e5e5;
-  --link: #4f45e5;
-  --link-hover: #0336cc;
+  --link: #0044ff;
+  --link-hover: #002ba4;
   --card-background: #f0f0f0;
 }
 
@@ -24,8 +24,8 @@
     --text: #ffffff;
     --text-muted: #999999;
     --border: #333333;
-    --link: #4f45e5;
-    --link-hover: #0336cc;
+    --link: #0044ff;
+    --link-hover: #002ba4;
     --card-background: #1d2025;
   }
 }
