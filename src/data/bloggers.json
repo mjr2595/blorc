@@ -74,5 +74,16 @@
       "github": "https://github.com/lindakatcodes",
       "bluesky": "https://bsky.app/profile/lindakat.com"
     }
+  },
+  {
+    "name": "Tason Jorres",
+    "profilePic": "/images/profile-pics/placeholder.png",
+    "site": "https://dev.to/jasonetorres",
+    "rss": "https://dev.to/feed/jasonetorres",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/thejasontorres",
+      "github": "https://github.com/jasonetorres",
+      "x": "https://x.com/TasonJorres"
+    }
   }
 ]
