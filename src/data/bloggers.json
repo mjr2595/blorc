@@ -22,12 +22,14 @@
   {
     "name": "Nazanin Ashrafi",
     "profilePic": "/images/profile-pics/nazanin.jpeg",
-    "site": "https://nazanin-ashrafi.hashnode.dev/",
-    "rss": "https://nazanin-ashrafi.hashnode.dev/rss.xml",
+    "site": "https://dev.to/nazanin_ashrafi",
+    "rss": "https://dev.to/feed/nazanin_ashrafi",
     "social": {
       "x": "https://twitter.com/nazanin_ashrafi",
       "github": "https://github.com/NazaNEYn",
-      "linkedin": "https://www.linkedin.com/in/nazanin-ashrafi/"
+      "linkedin": "https://www.linkedin.com/in/nazanin-ashrafi/",
+      "youtube": "https://www.youtube.com/@nazanin_ashrafi",
+      "codepen": "https://codepen.io/nazaneyn"
     }
   },
   {
