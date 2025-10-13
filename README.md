@@ -4,6 +4,8 @@
 
 A list of the latest blog posts from members of the [Torc Community](https://www.torc.dev/community/).
 
+![Blorc screenshot](https://i.imgur.com/d7BCijk.png)
+
 ## Want your blog added?
 
 If you're a member of the Torc Community and want your blog to be included in this list, please submit a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) with the following:
@@ -36,6 +38,8 @@ If you're a member of the Torc Community and want your blog to be included in th
 > - Bluesky
 > - X (aka Twitter)
 > - YouTube
+
+3. Submit your pull request.
 
 > [!TIP]  
 > For more detailed info on submitting a pull request, see [this blog post](https://github.blog/developer-skills/github/beginners-guide-to-github-creating-a-pull-request/).
