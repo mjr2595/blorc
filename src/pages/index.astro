@@ -119,10 +119,14 @@ try {
                   </div>
                   {article.summary && (
                     <p class="article-summary">
-                      {decodeHTML(
-                        article.summary.replace(/<[^>]*>/g, "")
-                      ).slice(0, 200)}
-                      ...
+                      {(() => {
+                        const cleanSummary = decodeHTML(
+                          article.summary.replace(/<[^>]*>/g, "")
+                        );
+                        return cleanSummary.length > 200
+                          ? `${cleanSummary.slice(0, 200)}...`
+                          : cleanSummary;
+                      })()}
                     </p>
                   )}
                 </li>

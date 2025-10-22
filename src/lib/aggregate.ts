@@ -88,7 +88,7 @@ export async function getArticles(): Promise<Article[]> {
               link,
               published: date.toISOString(),
               isoTime: date.getTime(),
-              summary: e["content:encoded"] || e.description || e.summary || "",
+              summary: e.description || e.summary || e["content:encoded"] || "",
               writerName: w.name,
               writerSite: w.site,
               channelTitle: channelTitle?.toString() || w.name,
