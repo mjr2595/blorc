@@ -1,7 +1,7 @@
 :root {
   --font-system: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  --max-width: 65ch;
+  --max-width: 800px;
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
@@ -121,10 +121,22 @@ a:hover {
 /* Writers grid */
 .writers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--spacing-lg);
   padding: 0;
   list-style: none;
+}
+
+@media (min-width: 768px) {
+  .writers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .writers-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .writer-card {
@@ -132,6 +144,11 @@ a:hover {
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: var(--spacing-md);
+}
+
+.writer-card h2 {
+  font-size: 1.1rem;
+  margin-top: var(--spacing-sm);
 }
 
 .writer-image {
@@ -144,7 +161,8 @@ a:hover {
 .writer-social {
   display: flex;
   gap: var(--spacing-sm);
-  margin-top: var(--spacing-sm);
+  margin-top: auto;
+  padding-top: var(--spacing-md);
 }
 
 .writer-social a {
