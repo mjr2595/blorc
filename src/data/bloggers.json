@@ -20,6 +20,18 @@
     }
   },
   {
+    "name": "Nick Taylor",
+    "profilePic": "/images/profile-pics/nick.jpeg",
+    "site": "https://www.nickyt.co/",
+    "rss": "https://www.nickyt.co/feed.xml",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/nickytonline",
+      "github": "https://github.com/nickytonline",
+      "bluesky": "https://bsky.app/profile/nickyt.online",
+      "x": "https://x.com/nickytonline"
+    }
+  },
+  {
     "name": "Nazanin Ashrafi",
     "profilePic": "/images/profile-pics/nazanin.jpeg",
     "site": "https://dev.to/nazanin_ashrafi",

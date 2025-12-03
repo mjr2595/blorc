@@ -120,8 +120,12 @@ try {
                   {article.summary && (
                     <p class="article-summary">
                       {(() => {
+                        const summaryText =
+                          typeof article.summary === "string"
+                            ? article.summary
+                            : "";
                         const cleanSummary = decodeHTML(
-                          article.summary.replace(/<[^>]*>/g, "")
+                          summaryText.replace(/<[^>]*>/g, "")
                         );
                         return cleanSummary.length > 200
                           ? `${cleanSummary.slice(0, 200)}...`

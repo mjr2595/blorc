@@ -82,13 +82,24 @@ export async function getArticles(): Promise<Article[]> {
             // Skip invalid dates
             if (isNaN(date.getTime())) continue;
 
+            // Extract summary/content, handling both string and object forms
+            const getSummary = () => {
+              if (typeof e.description === "string") return e.description;
+              if (typeof e.summary === "string") return e.summary;
+              if (typeof e.content === "string") return e.content;
+              if (e.content?.["#text"]) return e.content["#text"];
+              if (typeof e["content:encoded"] === "string")
+                return e["content:encoded"];
+              return "";
+            };
+
             items.push({
               id: e.guid || link,
               title: e.title?.toString() || "Untitled",
               link,
               published: date.toISOString(),
               isoTime: date.getTime(),
-              summary: e.description || e.summary || e["content:encoded"] || "",
+              summary: getSummary(),
               writerName: w.name,
               writerSite: w.site,
               channelTitle: channelTitle?.toString() || w.name,
