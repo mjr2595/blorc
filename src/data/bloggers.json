@@ -90,14 +90,26 @@
     }
   },
   {
-    "name": "Tason Jorres",
-    "profilePic": "/images/profile-pics/placeholder.png",
-    "site": "https://dev.to/jasonetorres",
-    "rss": "https://dev.to/feed/jasonetorres",
+    "name": "Jason Torres",
+    "profilePic": "/images/profile-pics/json.jpg",
+    "site": "https://jasontorres.laravel.cloud/",
+    "rss": "https://jasontorres.laravel.cloud/rss",
     "social": {
       "linkedin": "https://www.linkedin.com/in/thejasontorres",
       "github": "https://github.com/jasonetorres",
       "x": "https://x.com/TasonJorres"
+    }
+  },
+  {
+    "name": "Roxy Rodriguez-Becker",
+    "profilePic": "/images/profile-pics/roxy.png",
+    "site": "https://www.foxyroxy.dev/",
+    "rss": "https://www.foxyroxy.dev/rss.xml",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/roxana-rodriguez-becker/",
+      "github": "https://github.com/roxyrodbeck",
+      "bluesky": "https://bsky.app/profile/roxyrodbeck.bsky.social",
+      "x": "https://twitter.com/RoxanaCodes"
     }
   }
 ]
